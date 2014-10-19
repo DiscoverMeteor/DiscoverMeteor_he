@@ -1,1 +1,0 @@
-This is an outline of [Discover Meteor](http://discovermeteor.com).
