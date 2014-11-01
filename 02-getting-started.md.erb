@@ -3,282 +3,350 @@ title: מאיפה מתחילים
 slug: getting-started
 date: 0002/01/01
 number: 2
-contents: התקנה.|Meteor -למד על חמשת סוגי החבילות ב.|הגדר את מבנה הספריות באפליקציה שלך.
+points: 1
+photoUrl: http://www.flickr.com/photos/ikewinski/9511230392/
+photoAuthor: Mike Lewinski
+contents: התקנת Meteor.|למד על חמשת סוגי החבילות ב- Meteor.|הגדר את מבנה הספריות באפליקציה שלך.
 paragraphs: 49
 ---
 
-////
+רושם ראשון הוא חשוב, ותהליך ההתקנה של Meteor אמור להיות נטול כאבים. ברוב המקרים, תהיו מוכנים לריצה תוך חמש דקות. 
 
-////
+בתור התחלה, אנחנו יכולים להתקין את Meteor ע"י פתיחת חלון terminal והקשת הפקודה:
 
 ~~~bash
 $ curl https://install.meteor.com | sh
 ~~~
 
-////
+זה יתקין את הפקודה `meteor` במחשבכם ותהיו מוכנים להשתמש ב- Meteor.
 
 <% note do %>
 
-### Meteor *ללא* התקנה של 
+### Meteor *ללא* התקנה 
 
-////
+אם אינכם יכולים (או אינכם רוצים) להתקין את Meteor מקומית, אנחנו ממליצים שתבדקו את [Nitrous.io](http://nitrous.io).
 
-////
+Nitrous.io הוא שירות המאפשר לכם להריץ אפליקציות ולערוך את הקוד שלהן ישירות בדפדפן, וכתבנו [מדריך קצר](https://www.discovermeteor.com/blog/meteor-nitrous) לעזור לכם להתארגן שם. 
 
-////
+אתם פשוט יכולים לעקוב במדריך ההוא עד (וכולל) הסעיף "Installing Meteor", ואז לחזור לספר זה, החל מסעיף "יצירת אפליקציה פשוטה" שבפרק זה. 
 
-<% end %>
- 
-### Meteorite
-
-////
-
-////
-
-### התקנת Meteorite
-
-////
- 
-- [Node download site](http://nodejs.org/download/)
-- [Git download site](http://git-scm.com/downloads)
-
-////
-
-~~~bash
-$ npm install -g meteorite
-~~~
-
-<% note do %>
-
-### שגיאות הרשאה?
-
-////
-
-~~~bash
-$ sudo -H npm install -g meteorite
-~~~
-
-////
-
-<% end %>
-
-////
-
-////
-
-<% note do %>
-
-  ### `mrt` vs `meteor`
-  
-////
-  
 <% end %>
 
 ### יצירת אפליקציה פשוטה
 
-////
+כעת, משהתקנו את Meteor, הבה וניצור אפליקציה. <br>
+אנו נשתמש בכלי שורת הפקודה של Meteor שנקרא `meteor`:
 
 ~~~bash
-$ mrt create microscope
+$ meteor create microscope
 ~~~
 
-////
+פקודה זו תוריד את Meteor, ותיצור בשבילכם פרויקט Meteor פשוט ומוכן לריצה. בסיום הפעולה, תראו ספרייה בשם `microscope/`, שתכיל את הקבצים הבאים:
 
 ~~~bash
+.meteor
 microscope.css  
 microscope.html 
 microscope.js   
-smart.json 
 ~~~
 
-////
+האפליקציה ש- Meteor יצרה עבורכם היא תבנית בסיסית שמדגימה כמה דפוסים פשוטים. 
 
-////
+למרות שהאפליקציה שלנו לא עושה הרבה, אנחנו עדיין יכולים להריץ אותה. <br>
+על מנת להריץ את האפליקציה, חזרו לחלון שורת הפקודה והקישו:
 
 ~~~bash
 $ cd microscope
 $ meteor
 ~~~
 
-////
+כעת, הפנו את הדפדפן שלכם לכתובת `/http://localhost:3000` <br>
+(או לחילופין `/http://0.0.0.0:3000`) ואתם אמורים לראות משהו כזה: 
 
 <%= screenshot "2-1", "Meteor's Hello World." %>
 
-<%= commit "2-1", "Created basic microscope project." %>
+<%= commit "2-1", "יצרנו פרויקט microscope בסיסי." %>
 
-////
+מזל טוב! יש לכם אפליקציית Meteor ראשונה עובדת. <br>
+דרך אגב, על מנת לעצור את האפליקציה, כל שעליכם לעשות זה לגשת לחלון שורת הפקודה שממנה הרצתם את האפליקציה ולהקיש `ctrl+c` . 
+
+כמו כן שימו לב שאם אתם משתמשים ב- Git, כעת זה זמן טוב לאתחל את המאגר שלכם באמצעות הפקודה `git init`. 
+
+<% note do %>
+
+### להתראות Meteorite
+
+היו זמנים שבהם Meteor הסתמכה על מנהל חבילות חיצוני שנקרא Meteorite.<br>
+החל מגרסה 0.9.0 של Meteor, אין יותר צורך ב- Meteorite מכיון שהתכונות שלו נטמעו בתוך Meteor עצמה.
+
+לכן, אם אתם נתקלים בהתייחסות לפקודת Meteorite בשם `mrt` אתם יכולים פשוט להחליף אותה בפקודה הרגילה `meteor`. 
+
+<% end %>
 
 ### הוספת חבילה
 
-////
+כעת נשתמש במנהל החבילות של Meteor עצמה על מנת להוסיף את [Bootstrap](http://getbootstrap.com/) לפרויקט שלנו.
+
+זה אינו שונה מלהוסיף את Bootstrap בדרך הרגילה בצורה ידנית באמצעות הכללה של קבצי ה- CSS וה- JavaScript, חוץ מאשר העובדה שאנו מסתמכים על חבר קהילת [Andrew Mao](https://github.com/mizzao) Meteor (השם “mizzao” בשם החבילה `mizzao:bootstrap-3` הוא שם המשתמש של מחבר החבילה) שישמור על עדכניות הקבצים עבורנו.
+
+אם אנחנו כבר שם, הבה ונוסיף גם את חבילת [Underscore](http://underscorejs.org/).<br>
+Underscore היא ספריית תשתית JavaScript, והיא מאוד שימושית כאשר באים לעשות מניפולציות על מבני נתונים של JavaScript.
+
+נכון לזמן כתיבת מסמך זה, חבילת `underscore` היא עדיין חלק מהחבילות "הרשמיות" של Meteor, ולכן אין לה מחבר:
 
 ~~~bash
-$ mrt add bootstrap
+$ meteor add mizzao:bootstrap-3
+$ meteor add underscore
 ~~~
 
-<%= commit "2-2", "Added bootstrap package." %>
+שימו לב שאנו מוסיפים את Bootstrap **3**.<br>
+חלק מצילומי המסך בספר זה נלקחו מגרסה ישנה יותר של Microscope אשר השתמשה <br>
+ב- Boostrap **2**, ולכן עשויים להיות הבדלים קלים. 
+
+ברגע שהוספנו את חבילת Bootstrap אנחנו יכולים להבחין בשינוי באפליקציה העירומה שלנו:
+
+<%= screenshot "2-1b", "עם Boostrap." %>
+
+להבדיל מהדרך "המסורתית" להוספה של משאבים חיצוניים, לא היה עלינו לקשר אף קובץ CSS או JavaScript, מכיון ש- Meteor דואגת לזה בעצמה.<br>
+זהו רק אחד מהיתרונות הרבים של חבילות Meteor. 
 
 <% note do %>
 
-### הערה על חבילות
+### A Note on Packages
 
-////
+When speaking about packages in the context of Meteor, it pays to be specific. Meteor uses five basic types of packages:
 
-- ////
-- ////
-- ////
-- ////
-- ////
+- The Meteor core itself is split into different **Meteor platform packages**. They are included with every Meteor app, and you will pretty much never need to worry about these.
+- Regular Meteor packages are known as “**isopacks**”, or isomorphic packages (meaning they can work both on client and server). **First-party packages** such as `accounts-ui` or `appcache` are maintained by the Meteor core team and [come bundled with Meteor](http://docs.meteor.com/#packages). 
+- **Third-party packages** are just isopacks developed by other users that have been uploaded to Meteor's package server. You can browse them on [Atmosphere](http://atmosphere.meteor.com) or with the `meteor search` command.
+- **Local packages** are custom packages you can create yourself and put in the `/packages` directory. 
+- **NPM packages** (Node.js Packaged Modules) are Node.js packages. Although they don't work out of the box with Meteor, they *can* be used by the previous types of packages. 
 
 <% end %>
 
-### Meteor מבנה הספריות של אפליקציית
+### The File Structure of a Meteor App
 
-////
+Before we begin coding, we must set up our project properly. To ensure we have a clean build, open up the `microscope` directory and delete `microscope.html`, `microscope.js`, and `microscope.css`. 
 
-////
+Next, create four root directories inside `/microscope`: `/client`, `/server`, `/public`, and `/lib`. 
 
-////
+Next, we'll also create empty `main.html` and `main.js` files inside `/client`. Don't worry if this breaks the app for now, we'll start filling in these files in the next chapter. 
 
-- ////
-- ////
-- ////
-- ////
-- ////
-- ////
+We should mention that some of these directories are special. When it comes to running code, Meteor has a few rules:
 
-////
+- Code in the `/server` directory only runs on the server.
+- Code in the `/client` directory only runs on the client.
+- Everything else runs on both the client and server.
+- Your static assets (fonts, images, etc.) go in the `/public` directory. 
 
-////
+And it's also useful to know how Meteor decides in which order to load your files:
+
+- Files in `/lib` are loaded *before* anything else.
+- Any `main.*` file is loaded *after* everything else.
+- Everything else loads in alphabetical order based on the file name. 
+
+Note that although Meteor has these rules, it doesn't really force you to use any predefined file structure for your app if you don't want to. So the structure we suggest is just our way of doing things, not a rule set in stone. 
+
+We encourage you to check out the [official Meteor docs](http://docs.meteor.com/#structuringyourapp) if you want more details on this.
 
 <% note do %>
 
-### ? MVC הוא Meteor האם 
+### Is Meteor MVC?
 
-////
+If you're coming to Meteor from other frameworks such as Ruby on Rails, you might be wondering if Meteor apps adopt the MVC (Model View Controller) pattern. 
 
-////
+The short answer is no. Unlike Rails, Meteor doesn't impose any predefined structure to your app. So in this book we'll simply lay out code in the way that makes the most sense to us, without worrying too much about acronyms.
 
 <% end %>
 
-### ספריית public?
+### No public?
 
-////
+OK, we lied. We don't actually need the `public/` directory for the simple reason that Microscope doesn't use any static assets! But since most other Meteor apps are going to include at least a couple images, we thought it was important to cover it too. 
 
-////
+By the way, you might also notice a hidden `.meteor` directory. This is where Meteor stores its own code, and modifying  things in there is usually a very bad idea. In fact, you don't really ever need to look in this directory at all. The only exceptions to this are the `.meteor/packages` and `.meteor/release` files, which are respectively used to list your smart packages and the version of Meteor to use. When you add packages and change Meteor releases, it can be helpful to check the changes to these files.
 
 <% note do %>
 
-### (Underscores vs CamelCase) חוקיות שמות
+### Underscores vs CamelCase
 
-////
+The only thing we'll say about the age-old underscore (`my_variable`) vs camelCase (`myVariable`) debate is that it doesn't really matter which one you pick as long as you stick to it. 
 
-////
+In this book, we're using camelCase because it's the usual JavaScript way of doing things (after all, it's JavaScript, not java_script!). 
 
-////
+The only exceptions to this rule are file names, which will use underscores (`my_file.js`), and CSS classes, which use hyphens (`.my-class`). The reason for this is that in the filesystem, underscores are most common, while the CSS syntax itself already uses hyphens (`font-family`, `text-align`, etc.).
 
 <% end %>
 
-### טיפול ב- CSS
+### Taking Care of CSS
 
-////
+This book is not about CSS. So to avoid slowing you down with styling details, we've decided to make the whole stylesheet available from the start, so you don't need to worry about it ever again. 
 
-////
+CSS automatically gets loaded and minified by Meteor, so unlike other static assets it goes into `/client`, not `/public`. Go ahead and create a `client/stylesheets/` directory now, and put this `style.css` file inside it:
 
 ~~~css
 .grid-block, .main, .post, .comments li, .comment-form {
-    background: #fff;
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-}
+  background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
+
 body {
-    background: #eee;
-    color: #666666;
-}
-.navbar { margin-bottom: 10px }
-.navbar .navbar-inner {
-    border-radius: 0px 0px 3px 3px;
-}
-#spinner { height: 300px }
+  background: #eee;
+  color: #666666; }
+
+.navbar {
+  margin-bottom: 10px; }
+  /* line 32, ../sass/style.scss */
+  .navbar .navbar-inner {
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    -ms-border-radius: 0px 0px 3px 3px;
+    -o-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px; }
+
+#spinner {
+  height: 300px; }
+
 .post {
-    *zoom: 1;
+  /* For modern browsers */
+  /* For IE 6/7 (trigger hasLayout) */
+  *zoom: 1;
+  position: relative;
+  opacity: 1; }
+  .post:before, .post:after {
+    content: "";
+    display: table; }
+  .post:after {
+    clear: both; }
+  .post.invisible {
+    opacity: 0; }
+  .post.instant {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none; }
+  .post.animate{
     -webkit-transition: all 300ms 0ms;
     -webkit-transition-delay: ease-in;
     -moz-transition: all 300ms 0ms ease-in;
     -o-transition: all 300ms 0ms ease-in;
-    transition: all 300ms 0ms ease-in;
-    position: relative;
-    opacity: 1;
-}
-.post:before, .post:after {
-    content: "";
-    display: table;
-}
-.post:after { clear: both }
-.post.invisible { opacity: 0 }
-.post .upvote {
+    transition: all 300ms 0ms ease-in; }
+  .post .upvote {
     display: block;
     margin: 7px 12px 0 0;
-    float: left;
-}
-.post .post-content { float: left }
-.post .post-content h3 {
-    margin: 0;
-    line-height: 1.4;
-    font-size: 18px;
-}
-.post .post-content h3 a {
-    display: inline-block;
-    margin-right: 5px;
-}
-.post .post-content h3 span {
-    font-weight: normal;
-    font-size: 14px;
-    display: inline-block;
-    color: #aaaaaa;
-}
-.post .post-content p { margin: 0 }
-.post .discuss {
+    float: left; }
+  .post .post-content {
+    float: left; }
+    .post .post-content h3 {
+      margin: 0;
+      line-height: 1.4;
+      font-size: 18px; }
+      .post .post-content h3 a {
+        display: inline-block;
+        margin-right: 5px; }
+      .post .post-content h3 span {
+        font-weight: normal;
+        font-size: 14px;
+        display: inline-block;
+        color: #aaaaaa; }
+    .post .post-content p {
+      margin: 0; }
+  .post .discuss {
     display: block;
     float: right;
-    margin-top: 7px;
-}
+    margin-top: 7px; }
+
 .comments {
-    list-style-type: none;
-    margin: 0;
-}
-.comments li h4 {
+  list-style-type: none;
+  margin: 0; }
+  .comments li h4 {
     font-size: 16px;
-    margin: 0;
-}
-.comments li h4 .date {
-    font-size: 12px;
-    font-weight: normal;
-}
-.comments li h4 a { font-size: 12px }
-.comments li p:last-child { margin-bottom: 0 }
+    margin: 0; }
+    .comments li h4 .date {
+      font-size: 12px;
+      font-weight: normal; }
+    .comments li h4 a {
+      font-size: 12px; }
+  .comments li p:last-child {
+    margin-bottom: 0; }
+
 .dropdown-menu span {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    line-height: 20px;
-    color: #bbb;
-    white-space: nowrap;
-}
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  line-height: 20px;
+  color: #bbb;
+  white-space: nowrap; }
+
 .load-more {
-    display: block;
-    border-radius: 3px;
-    background: rgba(0, 0, 0, 0.05);
-    text-align: center;
-    height: 60px;
-    line-height: 60px;
-    margin-bottom: 10px;
-}
-.load-more:hover {
+  display: block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 10px; }
+  .load-more:hover {
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.1); }
+
+.posts .spinner-container{
+  position: relative;
+  height: 100px;
+}
+
+.jumbotron{
+  text-align: center;
+}
+.jumbotron h2{
+  font-size: 60px;
+  font-weight: 100;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.errors{
+  position: fixed;
+  z-index: 10000;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
+}
+.alert {
+          animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+     -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  width: 250px;
+  float: right;
+  clear: both;
+  margin-bottom: 5px;
+  pointer-events: auto;
 }
 ~~~
 <%= caption "client/stylesheets/style.css" %>
@@ -287,10 +355,10 @@ body {
 
 <% note do %>
 
-### הערה על CoffeeScript
+### A Note on CoffeeScript
 
-////
+In this book we'll be writing in pure JavaScript. But if you prefer CoffeeScript, Meteor has you covered. Simply add the CoffeeScript package and you'll be good to go:
 
-`mrt add coffeescript`
+`meteor add coffeescript`
 
 <% end %>
